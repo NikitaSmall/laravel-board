@@ -13,7 +13,7 @@ class ServicesController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth')->except(['index', 'show']);
+        $this->middleware('auth')->except(['index', 'show', 'searchService', 'ajax']);
     }
     /**
      * Display a listing of the resource.
@@ -128,6 +128,12 @@ class ServicesController extends Controller
 
         $services = Service::search($title, $deep);        
 
+        return $services;
+    }
+
+    public function ajax(Request $request)
+    {
+        $services = Service::all();
         return $services;
     }
 }

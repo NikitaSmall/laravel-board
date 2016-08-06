@@ -34,3 +34,5 @@ Route::put('/users/update', ['as' => 'update', 'uses' => 'UsersController@update
 
 Route::get('/search/service', ['as' => 'search.service', 'uses' => 'ServicesController@searchService']);
 
+Route::get('/ajax/services/', ['as' => 'ajax.services', 'uses' => 'ServicesController@ajax']);
+

@@ -18,12 +18,21 @@
                 <div class="panel-heading">Services: </div>
 
                 <div class="panel-body">
-                    @foreach($services as $service)
-                        <a href="{{ route('services.show', $service->id) }}"> {{ $service->title }} </a>
-                    @endforeach
+                    <ul class="list-group" id="service-list">
+                        @foreach($services as $service)
+                            <li class="list-group-item service">
+                                <a href="{{ route('services.show', $service->id) }}"> {{ $service->title }} </a>
+                            </li>
+                        @endforeach
+                    </ul>                    
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+@push('scripts')
+    <script src="/js/services.js"></script>
+@endpush
+
 @endsection
