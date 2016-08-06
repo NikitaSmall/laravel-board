@@ -7,11 +7,16 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Message;
 
+use App\Repositories\MessageRepository;
+
 class MessagesController extends Controller
 {
+    protected $messageRepository;
+
 	public function __construct()
 	{
 		$this->middleware('auth');
+        $this->messageRepository = new MessageRepository();
 	}
 
 	public function new_message(Request $request)
@@ -40,7 +45,7 @@ class MessagesController extends Controller
 
     public function incoming(Request $request)
     {
-    	$messages = $request->user()->incoming_messages();
+    	$messages = $this->messageRepository->incoming_messages($request->user());
     	return view('messages.incoming', [
     			'messages' => $messages,
     		]);
@@ -48,7 +53,7 @@ class MessagesController extends Controller
 
     public function outcoming(Request $request)
     {
-    	$messages = $request->user()->messages;
+    	$messages = $this->messageRepository->outcoming_messages($request->user());
     	return view('messages.outcoming', [
     			'messages' => $messages,
     		]);

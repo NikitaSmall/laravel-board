@@ -34,9 +34,4 @@ class User extends Authenticatable
     {
         return $this->hasMany(Message::class);
     }
-
-    public function incoming_messages()
-    {
-        return Message::where('rec_id', $this->id)->get();
-    }
 }
