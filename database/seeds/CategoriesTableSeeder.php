@@ -13,18 +13,18 @@ class CategoriesTableSeeder extends Seeder
     public function run()
     {
         Category::create([
-        		'title' => 'cats',
-        		'description' => 'Angry cats for your children.',
+        		'title' => 'first_cat',
+        		'description' => 'title',
         	]);
 
         Category::create([
-        		'title' => 'dogs',
-        		'description' => 'Sad dogs.',
+        		'title' => 'second_cat',
+        		'description' => 'title',
         	]);
 
         Category::create([
-        		'title' => 'parrots',
-        		'description' => 'Dead parrots.',
+        		'title' => 'third_cat',
+        		'description' => 'title',
         	]);
     }
 }

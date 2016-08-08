@@ -16,7 +16,7 @@ class MessagesController extends Controller
 	public function __construct()
 	{
 		$this->middleware('auth');
-        $this->messageRepository = new MessageRepository();
+    $this->messageRepository = new MessageRepository();
 	}
 
 	public function new_message(Request $request)
