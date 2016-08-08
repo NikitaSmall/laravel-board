@@ -36,4 +36,6 @@ Route::get('/search/service', ['as' => 'search.service', 'uses' => 'ServicesCont
 
 Route::get('/ajax/services/', ['as' => 'ajax.services', 'uses' => 'ServicesController@ajax']);
 
+Route::get('/ajax/messages/', ['as' => 'ajax.messages', 'uses' => 'MessagesController@ajax']);
+
 Route::get('/services/user/{id}', ['as' => 'show_users_services', 'uses' => 'ServicesController@showByUser']);

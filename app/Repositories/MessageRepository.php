@@ -14,11 +14,11 @@ class MessageRepository
 
 	public function incoming_messages(User $user)
 	{
-		return Message::where('rec_id', $user->id)->get();
+		return Message::orderBy('created_at' , 'desc')->where('rec_id', $user->id)->get();
 	}
 
 	public function outcoming_messages(User $user)
 	{
-		return Message::where('user_id', $user->id)->get();
+		return Message::orderBy('created_at' , 'desc')->where('user_id', $user->id)->get();
 	}
 }

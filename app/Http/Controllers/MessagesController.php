@@ -68,4 +68,10 @@ class MessagesController extends Controller
     			'message' => $message,
     		]);
     }
+
+    public function ajax(Request $request)
+    {
+        $messages = $this->messageRepository->incoming_messages($request->user());
+        return $messages;
+    }
 }
