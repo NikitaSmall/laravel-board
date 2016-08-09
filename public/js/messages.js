@@ -9,9 +9,11 @@ function updateIncomingMessage() {
 			var html = '';
 
 			for(var i = 0; i < messages.length; i++) {
-				html += '<li class="list-group-item message">' +
-                            '<a href="/detalis/' + messages[i].id + '">' + messages[i].title + '</a>' +
-                       '</li>'
+				html += '<tr class="message info">' +
+														'<td><time>Now</time></td>' +
+														'<td>' + messages[i].name +'</td>' +
+														'<td><a href="/detalis/' + messages[i].id + '">' + messages[i].title + '</a></td>' +
+                       '</tr>'
 			}
 			$('#messages-list').html(html);
 		}

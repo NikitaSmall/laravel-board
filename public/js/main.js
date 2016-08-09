@@ -1,4 +1,5 @@
 function makeSearchRequest() {
+	$('#search-panel').show();
 	$('#search-results').html('<img src="/images/ajax-loader.gif">');
 	var query = $('#search-line').val();
 	var deep = 0;
@@ -14,8 +15,8 @@ function makeSearchRequest() {
 		var html = '';
 
 		for (var i = 0; i < services.length; i++) {
-			html += '<a href="/services/' + services[i].id + '">' + 
-				services[i].title + 
+			html += '<a href="/services/' + services[i].id + '">' +
+				services[i].title +
 				'</a><br />';
 		}
 
@@ -24,5 +25,6 @@ function makeSearchRequest() {
 }
 
 $(document).ready(function() {
+	$('#search-panel').hide();
 	$('#search-line').keyup(makeSearchRequest);
 });

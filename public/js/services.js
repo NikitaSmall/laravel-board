@@ -9,9 +9,11 @@ function updateServiceList() {
 			var html = '';
 
 			for(var i = 0; i < services.length; i++) {
-				html += '<li class="list-group-item service">' +
-                            '<a href="/services/' + services[i].id + '">' + services[i].title + '</a>' +
-                       '</li>'
+				html += '<tr class="service">' +
+														'<td><time>Now</time></td>' +
+														'<td><a href="/services/' + services[i].id + '">' + services[i].title + '</a></td>' +
+														'<td>' + services[i].name +'</td>' +
+                       '</tr>'
 			}
 			$('#service-list').html(html);
 		}

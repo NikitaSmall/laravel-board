@@ -1,0 +1,33 @@
+.search-input{
+  margin-bottom: 10px;
+  width: 100% !important;
+}
+.btn-default{
+  margin-right: 10px;
+}
+.more{
+  padding: 0px 15px;
+}
+time{
+  color:#777;
+  margin-right: 10px;
+}
+.author{
+  color: #777;
+}
+
+.table td {
+   text-align: center;
+}
+
+.form-control{
+    margin-bottom: 10px;
+}
+.panel-footer {
+    border: none;
+    background: white;
+}
+
+.table tbody tr > td.info {
+  background-color: #d9edf7 !important;
+}

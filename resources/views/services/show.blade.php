@@ -3,22 +3,19 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-10 col-md-offset-1">
-            <div class="panel panel-default">
+        <div class="col-md-12">
+            <div class="panel panel-primary">
                 <div class="panel-heading">{{ $service->title }} </div>
 
                 <div class="panel-body">
-                    {{ $service->description }} <br>
-                    @if($service->status)
-                        Service is active
-                    @else
-                        Service is retired
-                    @endif
-
-                    <br>
+                    <p>{{ $service->description }}</p>
+                <p class="pull-right">
+                  
+                  <a href="{{ route('new_message', $service->user->id) }}" class="btn btn-primary">New message to service owner</a>
+                  <a href="{{ route('show_users_services', $service->user->id) }}" class="btn btn-primary">Show another user services</a>
+                </p>
                 </div>
 
-                <p class="pull-right"><a href="{{ route('new_message', $service->user->id) }}">New message to service owner</a> | <a href="{{ route('show_users_services', $service->user->id) }}">Show another user services</a></p>
             </div>
 
             <div id="disqus_thread"></div>

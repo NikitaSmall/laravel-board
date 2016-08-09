@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use DB;
 use App\Service;
 
 class ServiceRepository
@@ -16,7 +17,24 @@ class ServiceRepository
   */
 
   public function getLastServices($countServices = NULL){
-      return ($countServices) ? Service::orderBy('created_at','decs')->take($countServices)->get() : Service::orderBy('created_at','decs')->get();
+			if($countServices){
+					return DB::table('services')
+										->join('users', 'services.user_id', '=', 'users.id')
+										->select('services.id', 'services.title', 'services.created_at', 'users.id as user_id', 'users.name')
+										->take($countServices)
+										->orderBy('created_at','decs')
+										->where('status', '1')
+										->get();
+			}
+			else{
+					return DB::table('services')
+									->join('users', 'services.user_id', '=', 'users.id')
+									->select('services.id', 'services.title', 'services.created_at', 'users.id as user_id', 'users.name')
+									->orderBy('created_at','decs')
+									->where('status', '1')
+									->get();
+			}
+      //return ($countServices) ? Service::orderBy('created_at','decs')->take($countServices)->get() : Service::orderBy('created_at','decs')->get();
   }
 
   /*
@@ -26,5 +44,5 @@ class ServiceRepository
    public function getServicesByUser($id){
  	 		return Service::where('user_id', $id)->get();
    }
-	 
+
 }

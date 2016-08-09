@@ -142,6 +142,10 @@ class ServicesController extends Controller
         return $services;
     }
 
+    public function searchAdvanced(){
+        return view('advanced_search');
+    }
+
     public function ajax(Request $request)
     {
         $services = Service::all();
