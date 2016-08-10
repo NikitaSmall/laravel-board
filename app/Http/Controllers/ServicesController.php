@@ -27,8 +27,10 @@ class ServicesController extends Controller
     public function index()
     {
         $services = $this->serviceRepository->getLastServices();
+        $topServices = $this->serviceRepository->getTopServices('10');
         return view('services.index', [
                 'services' => $services,
+                'topServices' => $topServices,
             ]);
     }
 
@@ -85,6 +87,7 @@ class ServicesController extends Controller
      */
     public function show($id)
     {
+        Service::incViews($id);
         $service = Service::find($id);
         return view('services.show', [
                 'service' => $service,
@@ -136,8 +139,9 @@ class ServicesController extends Controller
     {
         $title = $request->title;
         $deep = $request->deep;
+        $user = $request->user;
 
-        $services = Service::search($title, $deep);
+        $services = Service::search($title, $deep, $user);
 
         return $services;
     }

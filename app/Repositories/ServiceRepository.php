@@ -37,6 +37,19 @@ class ServiceRepository
       //return ($countServices) ? Service::orderBy('created_at','decs')->take($countServices)->get() : Service::orderBy('created_at','decs')->get();
   }
 
+	/*
+				Return 10 top services
+	*/
+
+	public function getTopServices($countServices = NULL){
+			if($countServices){
+					return Service::take($countServices)->orderBy('views', 'desc')->get();
+			}
+			else{
+					return Service::orderBy('views', 'desc')->get();
+			}
+	}
+
   /*
       Return list of services by user
    */

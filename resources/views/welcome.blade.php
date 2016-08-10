@@ -15,7 +15,7 @@
             @endif
             <div class="panel panel-primary">
               <div class="panel-heading clearfix">
-              <h3 class="panel-title pull-left">Last of Services</h3>
+              <h3 class="panel-title pull-left">Last of 10 Services</h3>
               @if(Auth::user())
                   <div class="pull-right">
                       <a class="btn-sm btn-success" href="{{ route('services.create') }}"><i class="fa fa-btn fa-plus" ></i>New service</a>
@@ -56,7 +56,7 @@
                 <div class="panel-body">
                     <form class="form-inline" method="GET" action="{{ route('search.service') }}">
                         <input type="text" name="title" placeholder="Search!" class="form-control search-input" id="search-line" autocomplete="false">
-                        <input type="submit" value="Search!" class="btn btn-default"><a href="{{ url('/search/advanced') }}">Advanced Search</a>
+                        <!--<input type="submit" value="Search!" class="btn btn-default">--><a href="{{ url('/search/advanced') }}">Advanced Search</a>
                     </form>
                 </div>
             </div>

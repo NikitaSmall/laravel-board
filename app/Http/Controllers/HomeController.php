@@ -30,7 +30,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $lastServices = $this->serviceRepository->getLastServices('7');
+        $lastServices = $this->serviceRepository->getLastServices('10');
         return view('welcome', [
                 'services' => $lastServices,
             ]);

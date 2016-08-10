@@ -8,7 +8,7 @@ class Service extends Model
 {
     protected $fillable = [
     	'user_id', 'category_id', 'title',
-    	'description', 'status', 'rank', 'photo'
+    	'description', 'status', 'rank', 'views', 'photo'
     ];
 
     public function user()
@@ -27,6 +27,15 @@ class Service extends Model
             return Service::where('title', 'LIKE', '%' . $title . '%')->orWhere('description', 'LIKE', '%' . $title . '%')->get();
         }
 
+        if($user){
+
+        }
+
         return Service::where('title', 'LIKE', '%' . $title . '%')->get();
     }
+
+    public static function incViews($id){
+        Service::where('id', $id)->increment('views', 1);
+    }
+
 }

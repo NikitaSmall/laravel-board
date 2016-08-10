@@ -5,12 +5,19 @@
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-primary">
-                <div class="panel-heading">{{ $service->title }} </div>
+                <div class="panel-heading">
+                <p class="text-left">
+                  {{ $service->title }}
+                </p>
+                </div>
 
                 <div class="panel-body">
                     <p>{{ $service->description }}</p>
+                    <p class="text-right">
+                    Views  <span class="label label-default">{{ $service->views }}</span>
+                    </p>
                 <p class="pull-right">
-                  
+
                   <a href="{{ route('new_message', $service->user->id) }}" class="btn btn-primary">New message to service owner</a>
                   <a href="{{ route('show_users_services', $service->user->id) }}" class="btn btn-primary">Show another user services</a>
                 </p>
