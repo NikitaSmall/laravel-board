@@ -12,8 +12,8 @@ class AddViewsFieldToServices extends Migration
      */
     public function up()
     {
-        Schema::table('services', function($table) {
-            $table->('views')->default('0');
+        Schema::table('services', function(Blueprint $table) {
+            $table->integer('views')->default(0);
         });
     }
 
@@ -24,7 +24,7 @@ class AddViewsFieldToServices extends Migration
      */
     public function down()
     {
-        Schema::table('services', function($table) {
+        Schema::table('services', function(Blueprint $table) {
             $table->dropColumn('views');
         });
     }

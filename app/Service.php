@@ -21,21 +21,9 @@ class Service extends Model
     	return $this->belongsTo(Category::class);
     }
 
-    public static function search($title, $deep)
-    {
-        if ($deep) {
-            return Service::where('title', 'LIKE', '%' . $title . '%')->orWhere('description', 'LIKE', '%' . $title . '%')->get();
-        }
-
-        if($user){
-
-        }
-
-        return Service::where('title', 'LIKE', '%' . $title . '%')->get();
-    }
-
-    public static function incViews($id){
-        Service::where('id', $id)->increment('views', 1);
+    public function incViews(){
+        $this->increment('views', 1);
+        $this->save();
     }
 
 }

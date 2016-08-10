@@ -87,8 +87,9 @@ class ServicesController extends Controller
      */
     public function show($id)
     {
-        Service::incViews($id);
         $service = Service::find($id);
+        $service->incViews();
+
         return view('services.show', [
                 'service' => $service,
             ]);
@@ -139,11 +140,8 @@ class ServicesController extends Controller
     {
         $title = $request->title;
         $deep = $request->deep;
-        $user = $request->user;
 
-        $services = Service::search($title, $deep, $user);
-
-        return $services;
+        return $this->serviceRepository->search($title, $deep);
     }
 
     public function searchAdvanced(){
