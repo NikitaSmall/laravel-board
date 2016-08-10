@@ -11,14 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index');
 
 Route::auth();
 
 Route::resource('services', 'ServicesController');
-Route::get('/home', 'HomeController@index');
+Route::get('/home', 'HomeController@home');
 
 Route::get('/new_message/{id}', ['as' => 'new_message', 'uses' => 'MessagesController@new_message']);
 Route::post('/message', ['as' => 'create_message', 'uses' => 'MessagesController@send']);
@@ -34,5 +32,10 @@ Route::put('/users/update', ['as' => 'update', 'uses' => 'UsersController@update
 
 Route::get('/search/service', ['as' => 'search.service', 'uses' => 'ServicesController@searchService']);
 
+Route::get('/search/advanced', ['as' => 'search.advanced', 'uses' => 'ServicesController@searchAdvanced']);
+
 Route::get('/ajax/services/', ['as' => 'ajax.services', 'uses' => 'ServicesController@ajax']);
 
+Route::get('/ajax/messages/', ['as' => 'ajax.messages', 'uses' => 'MessagesController@ajax']);
+
+Route::get('/services/user/{id}', ['as' => 'show_users_services', 'uses' => 'ServicesController@showByUser']);

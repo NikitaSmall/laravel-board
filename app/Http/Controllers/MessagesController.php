@@ -16,7 +16,7 @@ class MessagesController extends Controller
 	public function __construct()
 	{
 		$this->middleware('auth');
-        $this->messageRepository = new MessageRepository();
+    $this->messageRepository = new MessageRepository();
 	}
 
 	public function new_message(Request $request)
@@ -67,5 +67,11 @@ class MessagesController extends Controller
     	return view('messages.show', [
     			'message' => $message,
     		]);
+    }
+
+    public function ajax(Request $request)
+    {
+        $messages = $this->messageRepository->incoming_messages($request->user());
+        return $messages;
     }
 }

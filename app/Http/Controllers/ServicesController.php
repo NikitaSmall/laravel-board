@@ -7,13 +7,17 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Service;
 use App\Category;
+use App\Repositories\ServiceRepository;
 
 class ServicesController extends Controller
 {
 
+    protected $serviceRepository;
+
     public function __construct()
     {
         $this->middleware('auth')->except(['index', 'show', 'searchService', 'ajax']);
+        $this->serviceRepository = new serviceRepository();
     }
     /**
      * Display a listing of the resource.
@@ -22,9 +26,11 @@ class ServicesController extends Controller
      */
     public function index()
     {
-        $services = Service::all();
+        $services = $this->serviceRepository->getLastServices();
+        $topServices = $this->serviceRepository->getTopServices('10');
         return view('services.index', [
                 'services' => $services,
+                'topServices' => $topServices,
             ]);
     }
 
@@ -51,7 +57,7 @@ class ServicesController extends Controller
     {
         /*
         Validation
-        */ 
+        */
 
         $fileName = '';
         if ($request->hasFile('photo')) {
@@ -81,10 +87,18 @@ class ServicesController extends Controller
      */
     public function show($id)
     {
+        Service::incViews($id);
         $service = Service::find($id);
         return view('services.show', [
                 'service' => $service,
             ]);
+    }
+
+    public function showByUser($id){
+        $services = $this->serviceRepository->getServicesByUser($id);
+        return view('services.users', [
+              'services' => $services,
+          ]);
     }
 
     /**
@@ -125,10 +139,15 @@ class ServicesController extends Controller
     {
         $title = $request->title;
         $deep = $request->deep;
+        $user = $request->user;
 
-        $services = Service::search($title, $deep);        
+        $services = Service::search($title, $deep, $user);
 
         return $services;
+    }
+
+    public function searchAdvanced(){
+        return view('advanced_search');
     }
 
     public function ajax(Request $request)

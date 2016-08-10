@@ -7,9 +7,11 @@ use Illuminate\Http\Request;
 
 use App\Api\OpenWeather;
 use App\Service;
+use App\Repositories\ServiceRepository;
 
 class HomeController extends Controller
 {
+    protected $serviceRepository;
     /**
      * Create a new controller instance.
      *
@@ -17,7 +19,8 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
+        $this->serviceRepository = new serviceRepository();
     }
 
     /**
@@ -26,7 +29,14 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
+    {
+        $lastServices = $this->serviceRepository->getLastServices('10');
+        return view('welcome', [
+                'services' => $lastServices,
+            ]);
+    }
+
+    public function home(){
         $weatherClient = new OpenWeather('Odessa');
         return view('home', [
                 'weather' => $weatherClient,
